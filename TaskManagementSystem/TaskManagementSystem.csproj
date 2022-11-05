@@ -4,16 +4,8 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-TaskManagementSystem-077F3BBA-F7BE-4C64-8746-DBE63A67B818</UserSecretsId>
+    <UserSecretsId>aspnet-TaskManagementSystem-37B7E586-30D8-44CB-9C27-F7DE7094E191</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.8" />
