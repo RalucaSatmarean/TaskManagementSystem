@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<TaskManagementSystem.Models.ProjectModel>
+
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,3 +7,54 @@
 
 <h1>Index</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.ProjectId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ProjectId)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId}) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ProjectId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

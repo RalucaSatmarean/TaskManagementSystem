@@ -19,6 +19,46 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Comment/CommentDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxDb21tZW50RGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Comment/CreateComment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxDcmVhdGVDb21tZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Comment/DeleteComment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxEZWxldGVDb21tZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Comment/EditComment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxFZGl0Q29tbWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Comment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Employee/CreateEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQ3JlYXRlRW1wbG95ZWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Employee/DeleteEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRGVsZXRlRW1wbG95ZWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Employee/EditEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRWRpdEVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Employee/EmployeeDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcRW1wbG95ZWVEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Employee/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -27,12 +67,44 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/ProjectTask/CreateProjectTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFRhc2tcQ3JlYXRlUHJvamVjdFRhc2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/ProjectTask/DeleteProjectTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFRhc2tcRGVsZXRlUHJvamVjdFRhc2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/ProjectTask/EditProjectTask.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFRhc2tcRWRpdFByb2plY3RUYXNrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/ProjectTask/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFRhc2tcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/ProjectTask/ProjectTaskDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFRhc2tcUHJvamVjdFRhc2tEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Project/CreateProject.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxDcmVhdGVQcm9qZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Project/DeleteProject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxEZWxldGVQcm9qZWN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Project/EditProject.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxFZGl0UHJvamVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Project/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Project/ProjectDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdFxQcm9qZWN0RGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/User/Desktop/.Net/ProiectFinal/TaskManagementSystem/TaskManagementSystem/Views/Shared/Error.cshtml]

@@ -1,26 +1,39 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagementSystem.Data;
+using TaskManagementSystem.Models;
 
 namespace TaskManagementSystem.Controllers
 {
     public class ProjectTaskController : Controller
     {
+
+        private Repository.ProjectTaskRepository _repository;
+
+        public ProjectTaskController(ApplicationDbContext dbContext)
+        {
+            _repository = new Repository.ProjectTaskRepository(dbContext);
+        }
+
         // GET: ProjectTaskController
         public ActionResult Index()
         {
-            return View();
+            var tasks = _repository.GetAllTasks();
+            return View("Index", tasks);
         }
 
         // GET: ProjectTaskController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = _repository.GetTaskById(id);
+            return View("ProjectTaskDetails", model);
+
         }
 
         // GET: ProjectTaskController/Create
         public ActionResult Create()
         {
-            return View();
+            return View("CreateProjectTask");
         }
 
         // POST: ProjectTaskController/Create
@@ -30,53 +43,76 @@ namespace TaskManagementSystem.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Models.ProjectTaskModel model = new Models.ProjectTaskModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    _repository.InsertTask(model);
+                }
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("CreateProjectTask");
             }
         }
 
         // GET: ProjectTaskController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = _repository.GetTaskById(id);
+            return View("EditProjectTask", model);
         }
 
         // POST: ProjectTaskController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new ProjectTaskModel();
+
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    _repository.UpdateTask(model);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index", id);
+                }
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", id);
             }
         }
 
+
         // GET: ProjectTaskController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = _repository.GetTaskById(id);
+            return View("DeleteProjectTask", model);
         }
 
         // POST: ProjectTaskController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _repository.DeleteTask(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteProjectTask", id);
             }
         }
     }

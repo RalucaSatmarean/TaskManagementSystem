@@ -1,26 +1,37 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskManagementSystem.Data;
+using TaskManagementSystem.Models;
 
 namespace TaskManagementSystem.Controllers
 {
     public class EmployeeController : Controller
     {
+        private Repository.EmployeeRepository _repository;
+
+        public EmployeeController (ApplicationDbContext dbContext )
+        {
+            _repository = new Repository.EmployeeRepository(dbContext);
+        }
+
         // GET: EmployeeController
         public ActionResult Index()
         {
-            return View();
+            var employees = _repository.GetAllEmployees();
+            return View("Index", employees);
         }
 
         // GET: EmployeeController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = _repository.GetEmployeeById(id);
+            return View("EmployeeDetails", model);
         }
 
         // GET: EmployeeController/Create
         public ActionResult Create()
         {
-            return View();
+            return View("CreateEmployee");
         }
 
         // POST: EmployeeController/Create
@@ -30,53 +41,78 @@ namespace TaskManagementSystem.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Models.EmployeeModel model = new Models.EmployeeModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if(task.Result)
+                {
+                    _repository.InsertEmployee(model);
+                }
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("CreateEmployee");
             }
         }
 
         // GET: EmployeeController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = _repository.GetEmployeeById(id);
+            return View("EditEmployee", model);
         }
 
         // POST: EmployeeController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new EmployeeModel();
+
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    _repository.UpdateEmployee(model);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index", id);
+                }
+                    
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", id);
             }
         }
 
         // GET: EmployeeController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = _repository.GetEmployeeById(id);
+            return View("DeleteEmployee", model);
         }
 
         // POST: EmployeeController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _repository.DeleteEmployee(id);
+                return RedirectToAction("Index");
+
             }
             catch
             {
-                return View();
+                return View("DeleteEmployee", id);
+
             }
         }
     }

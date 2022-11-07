@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TaskManagementSystem.Data;
+using TaskManagementSystem.Models;
 
 namespace TaskManagementSystem.Controllers
 {
@@ -17,13 +18,15 @@ namespace TaskManagementSystem.Controllers
         // GET: ProjectController
         public ActionResult Index()
         {
-            return View();
+            var projects = _repository.GetAllProjects();
+            return View("Index", projects);
         }
 
         // GET: ProjectController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = _repository.GetProjectById(id);
+            return View("ProjectDetails", model);
         }
 
         // GET: ProjectController/Create
@@ -59,7 +62,8 @@ namespace TaskManagementSystem.Controllers
         // GET: ProjectController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = _repository.GetProjectById(id);
+            return View("EditProject",model);
         }
 
         // POST: ProjectController/Edit/5
@@ -69,18 +73,31 @@ namespace TaskManagementSystem.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new ProjectModel();
+
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    _repository.UpdateProject(model);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index", id);
+                }
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", id);
             }
         }
 
         // GET: ProjectController/Delete/5
         public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = _repository.GetProjectById(id);
+            return View("DeleteProject", model);
         }
 
         // POST: ProjectController/Delete/5
@@ -90,11 +107,12 @@ namespace TaskManagementSystem.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _repository.DeleteProject(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteProject", id);
             }
         }
     }

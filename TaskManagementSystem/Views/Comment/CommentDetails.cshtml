@@ -1,0 +1,49 @@
+﻿@model TaskManagementSystem.Models.CommentModel
+
+@{
+    ViewData["Title"] = "CommentDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CommentDetails</h1>
+
+<div>
+    <h4>CommentModel</h4>
+    <hr />
+    <dl class="row">
+        <@*dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CommentId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CommentId)
+        </dd>*@
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TaskId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TaskId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EmployeeId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EmployeeId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CommentId }) |
+    <a asp-action="Index">Back to List</a>
+</div>

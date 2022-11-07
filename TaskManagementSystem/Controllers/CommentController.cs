@@ -1,26 +1,40 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using TaskManagementSystem.Data;
+using TaskManagementSystem.Models;
 
 namespace TaskManagementSystem.Controllers
 {
     public class CommentController : Controller
     {
+
+        private Repository.CommentRepository _repository;
+
+        public CommentController(ApplicationDbContext dbContext)
+        {
+            _repository = new Repository.CommentRepository(dbContext);
+        }
+
         // GET: CommentController
         public ActionResult Index()
         {
-            return View();
+            var comments = _repository.GetAllComments();
+            return View("Index", comments);
         }
 
         // GET: CommentController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var model = _repository.GetCommentById(id);
+            return View("CommentDetails", model);
+
         }
 
         // GET: CommentController/Create
         public ActionResult Create()
         {
-            return View();
+            return View("CreateComment");
         }
 
         // POST: CommentController/Create
@@ -30,53 +44,77 @@ namespace TaskManagementSystem.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                Models.CommentModel model = new Models.CommentModel();
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    _repository.InsertComment(model);
+                }
+
+                    return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("CreateComment");
             }
         }
 
         // GET: CommentController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var model = _repository.GetCommentById(id);
+            return View("EditComment", model);
         }
 
         // POST: CommentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = new CommentModel();
+
+                var task = TryUpdateModelAsync(model);
+                task.Wait();
+                if (task.Result)
+                {
+                    _repository.UpdateComment(model);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index", id);
+                }
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", id);
             }
         }
 
+
         // GET: CommentController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = _repository.GetCommentById(id);
+            return View("DeleteComment", model);
         }
 
         // POST: CommentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _repository.DeleteComment(id);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeleteComment", id);
             }
         }
     }
