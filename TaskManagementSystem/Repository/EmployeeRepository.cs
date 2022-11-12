@@ -54,9 +54,13 @@ namespace TaskManagementSystem.Repository
             return list;
         }
 
-        public EmployeeModel GetEmployeeById(Guid id)
+        public EmployeeModel GetEmployeeById(Guid? id)
         {
-            return MapDBobjectToModel(_DBContext.Employees.FirstOrDefault(x => x.EmployeeId == id));
+            if (id != null)
+            {
+               return MapDBobjectToModel(_DBContext.Employees.FirstOrDefault(x => x.EmployeeId == id));
+            }
+            return new EmployeeModel();
         }
 
         public void InsertEmployee(EmployeeModel model)

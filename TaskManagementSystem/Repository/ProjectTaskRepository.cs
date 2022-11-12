@@ -1,4 +1,5 @@
-﻿using TaskManagementSystem.Data;
+﻿using System.Threading.Tasks;
+using TaskManagementSystem.Data;
 using TaskManagementSystem.Models;
 using TaskManagementSystem.Models.DBObjects;
 
@@ -88,11 +89,21 @@ namespace TaskManagementSystem.Repository
             }
         }
 
+      
         public void DeleteTask(Guid id)
         {
             var dbobject = _DBContext.ProjectTasks.FirstOrDefault(x => x.TaskId == id);
             if (dbobject != null)
             {
+                var comments = _DBContext.Comments.Where(x => x.TaskId == id);
+                if (comments != null)
+                {
+                    foreach (var comment in comments)
+                    {
+                        _DBContext.Comments.Remove(comment);
+                    }
+                }
+                
                 _DBContext.ProjectTasks.Remove(dbobject);
                 _DBContext.SaveChanges();
             }

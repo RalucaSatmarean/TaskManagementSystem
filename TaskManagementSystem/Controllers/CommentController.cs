@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using TaskManagementSystem.Data;
 using TaskManagementSystem.Models;
+using TaskManagementSystem.Repository;
 
 namespace TaskManagementSystem.Controllers
 {
@@ -10,10 +12,15 @@ namespace TaskManagementSystem.Controllers
     {
 
         private Repository.CommentRepository _repository;
+        private Repository.ProjectTaskRepository _taskRepository;
+        private Repository.EmployeeRepository _employeeRepository;
 
         public CommentController(ApplicationDbContext dbContext)
         {
             _repository = new Repository.CommentRepository(dbContext);
+            _taskRepository = new ProjectTaskRepository(dbContext);
+            _employeeRepository = new EmployeeRepository(dbContext);
+         
         }
 
         // GET: CommentController
@@ -34,6 +41,15 @@ namespace TaskManagementSystem.Controllers
         // GET: CommentController/Create
         public ActionResult Create()
         {
+           
+            var tasks = _taskRepository.GetAllTasks();
+            var taskList = tasks.Select(x => new SelectListItem(x.Name, x.TaskId.ToString()));
+            ViewBag.TaskList = taskList;
+
+            var employees = _employeeRepository.GetAllEmployees();
+            var employeeList = employees.Select(x => new SelectListItem(x.Name, x.EmployeeId.ToString()));
+            ViewBag.EmployeeList = employeeList;
+
             return View("CreateComment");
         }
 

@@ -1,17 +1,17 @@
-﻿@model TaskManagementSystem.ViewModels.ProjectTaskViewModel
+﻿@model TaskManagementSystem.Models.ProjectTaskModel
 
 @{
     ViewData["Title"] = "ProjectTaskDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Project Task Details</h1>
+<h1>ProjectTaskDetails_v1</h1>
 
 <div>
-   @* <h4>ProjectTask</h4>*@
-       <hr />
+    <h4>ProjectTaskModel</h4>
+    <hr />
     <dl class="row">
-        @*<dt class = "col-sm-2">
+       @* <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TaskId)
         </dt>
         <dd class = "col-sm-10">
@@ -40,17 +40,17 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.StartDate)
-        @*</dd>
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ProjectId)
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ProjectId)
-        </dd>*@
-        @* <dt class = "col-sm-2">
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Reporter)
-        </dt>*@
-       @* <dd class = "col-sm-10">
+        </dt>
+        <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Reporter)
         </dd>
         <dt class = "col-sm-2">
@@ -58,33 +58,13 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Assignee)
-        </dd>*@
-        <dt class = "col-sm-2">
-           @* @Html.DisplayNameFor(model => model.ProjectName)*@
-                @Html.DisplayName("Project Name")
+        </dd>
+         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description) @*replace with comments*@
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProjectName)
+            @Html.TextAreaFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ReporterName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ReporterName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AssigneeName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AssigneeName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Comments)
-        </dt>
-        <dd class = "col-sm-10">
-                @Html.TextAreaFor(model => model.Comments, new { Class="commentTextArea" })
-        </dd>
-        </select>
     </dl>
 </div>
 <div>

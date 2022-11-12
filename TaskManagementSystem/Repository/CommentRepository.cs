@@ -1,6 +1,7 @@
 ﻿using TaskManagementSystem.Data;
 using TaskManagementSystem.Models.DBObjects;
 using TaskManagementSystem.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace TaskManagementSystem.Repository
 {
@@ -60,9 +61,23 @@ namespace TaskManagementSystem.Repository
             return MapDBobjectToModel(_DBContext.Comments.FirstOrDefault(x => x.CommentId == id));
         }
 
+        public List<CommentModel> GetCommentsByTask(Guid id)
+        {
+            var list = new List<CommentModel>();
+            var comments = _DBContext.Comments.Where(x => x.TaskId == id).ToList();
+            foreach (var dbobject in comments)
+            {
+                list.Add(MapDBobjectToModel(dbobject));
+            }
+
+            return list;
+        }
+
+        
         public void InsertComment(CommentModel model)
         {
             model.CommentId = Guid.NewGuid();
+            model.Date = DateTime.Now.Date;
             _DBContext.Comments.Add(MapModelToDbObject(model));
             _DBContext.SaveChanges();
         }

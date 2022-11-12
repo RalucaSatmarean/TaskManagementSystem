@@ -79,12 +79,60 @@ namespace TaskManagementSystem.Repository
             }
         }
 
-        public void DeleteProject(Guid id)
+        //public void DeleteProject(Guid id)
+        //{
+        //    var project = _DBContext.Projects.FirstOrDefault(x => x.ProjectId == id);
+
+        //    if (project != null)
+        //    {
+        //        var tasks = _DBContext.ProjectTasks.Where(x => x.ProjectId == id);
+        //        foreach (var task in tasks)
+        //        {
+        //            _DBContext.ProjectTasks.Remove(task);
+        //        }
+        //        _DBContext.Projects.Remove(project);
+        //        _DBContext.SaveChanges();
+        //    }
+
+
+        //public void DeleteTask(Guid id)
+        //{
+        //    var dbobject = _DBContext.ProjectTasks.FirstOrDefault(x => x.TaskId == id);
+        //    if (dbobject != null)
+        //    {
+        //        var comments = _DBContext.Comments.Where(x => x.TaskId == id);
+        //        if (comments != null)
+        //        {
+        //            foreach (var comment in comments)
+        //            {
+        //                _DBContext.Comments.Remove(comment);
+        //            }
+        //        }
+
+        //        _DBContext.ProjectTasks.Remove(dbobject);
+        //        _DBContext.SaveChanges();
+        //    }
+
+            public void DeleteProject(Guid id)
         {
-            var dbobject = _DBContext.Projects.FirstOrDefault(x => x.ProjectId == id);
-            if (dbobject != null)
+            var project = _DBContext.Projects.FirstOrDefault(x => x.ProjectId == id);
+            if (project != null)
             {
-                _DBContext.Projects.Remove(dbobject);
+                var tasks = _DBContext.ProjectTasks.Where(x => x.ProjectId == id);
+                foreach(var task in tasks)
+                {
+                    var comments = _DBContext.Comments.Where(x => x.TaskId == task.TaskId);
+                    if (comments != null)
+                     {
+                        foreach (var comment in comments)
+                        {
+                            _DBContext.Comments.Remove(comment);
+                        }
+                           
+                    }
+                    _DBContext.ProjectTasks.Remove(task);
+                }
+                _DBContext.Projects.Remove(project);
                 _DBContext.SaveChanges();
             }
         }

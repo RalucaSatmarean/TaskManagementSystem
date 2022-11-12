@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TaskManagementSystem.Models.ProjectTaskModel>
+﻿@model IEnumerable<TaskManagementSystem.ViewModels.ProjectTaskViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -28,15 +28,25 @@
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.ProjectId)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.Reporter)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Assignee)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReporterName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AssigneeName)             
+            </th>
+          
             <th></th>
         </tr>
     </thead>
@@ -58,19 +68,28 @@
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.ProjectId)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Reporter)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Assignee)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReporterName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssigneeName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.TaskId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.TaskId  }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.TaskId  })
+                    @Html.ActionLink("Details", "Details", new { id=item.TaskId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.TaskId})
             </td>
         </tr>
 }
