@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
 using TaskManagementSystem.Data;
 using TaskManagementSystem.Models;
 using TaskManagementSystem.Repository;
@@ -51,7 +52,8 @@ namespace TaskManagementSystem.Controllers
         {
             var task = new ProjectTaskModel();
             var viewmodel = PopulateViewModel(task);
-            return View("CreateProjectTask",viewmodel);
+            var editableViewModel = new ProjectTaskEditableViewModel(viewmodel);
+            return View("CreateProjectTask", editableViewModel);
         }
 
         // POST: ProjectTaskController/Create
@@ -64,11 +66,12 @@ namespace TaskManagementSystem.Controllers
                 ProjectTaskModel model = new ProjectTaskModel();
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
+                model.Status = collection["SelectedTaskStatus"];
                 if (task.Result)
                 {
                     _repository.InsertTask(model);
                 }
-                return RedirectToAction("Index");
+                    return RedirectToAction("Index");
             }
             catch
             {
@@ -79,8 +82,10 @@ namespace TaskManagementSystem.Controllers
         // GET: ProjectTaskController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            var model = _repository.GetTaskById(id);
-            return View("EditProjectTask", model);
+            var task = _repository.GetTaskById(id);
+            var viewmodel = PopulateViewModelWithComment(task);
+            var editableViewModel = new ProjectTaskEditableViewModel(viewmodel);
+            return View("EditProjectTask", editableViewModel);
         }
 
         // POST: ProjectTaskController/Edit/5
@@ -94,6 +99,7 @@ namespace TaskManagementSystem.Controllers
 
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
+                model.Status = collection["SelectedTaskStatus"];
                 if (task.Result)
                 {
                     _repository.UpdateTask(model);
@@ -169,7 +175,7 @@ namespace TaskManagementSystem.Controllers
         private string PopulateComments(List<CommentModel> commentList)
         {
             string result = string.Empty;
-            if (commentList != null)
+            if (commentList.Count >0)
             {
                 foreach (var comment in commentList)
                 {
@@ -179,7 +185,7 @@ namespace TaskManagementSystem.Controllers
                 }
                 return result.TrimStart('\n');
             }
-            return result;
+            return "no comments added to this task";
         }
 
 

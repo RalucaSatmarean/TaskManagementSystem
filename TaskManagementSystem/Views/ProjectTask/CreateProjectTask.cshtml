@@ -1,4 +1,4 @@
-﻿@model TaskManagementSystem.ViewModels.ProjectTaskViewModel
+﻿@model TaskManagementSystem.ViewModels.ProjectTaskEditableViewModel
 
 @{
     ViewData["Title"] = "CreateProjectTask";
@@ -19,7 +19,7 @@
                 <span asp-validation-for="TaskId" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">Task Name</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -28,15 +28,16 @@
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+                <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                @Html.DropDownListFor(m=>m.SelectedTaskStatus , Model.TaskStatusesList, "Select Task Status",new{@class="form-control"})
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
+             
             <div class="form-group">
-                <label asp-for="StartDate" class="control-label"></label>
+                <label asp-for="StartDate" class="control-label">Start Date</label>
                 <input asp-for="StartDate" class="form-control" />
-                <span asp-validation-for="StartDate" class="text-danger">Start Date</span>
+                <span asp-validation-for="StartDate" class="text-danger"></span>
             </div>
              <div class="form-group">
                 <label asp-for="ProjectId" class="control-label">Project Name</label>
@@ -76,12 +77,7 @@
                 </select>
                 <span asp-validation-for="Assignee" class="text-danger"></span>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Assignee" class="control-label"></label>
-                <input asp-for="Assignee" class="form-control" />
-                <span asp-validation-for="Assignee" class="text-danger"></span>
-            </div>*@
-                 <div class="form-group">
+                <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
