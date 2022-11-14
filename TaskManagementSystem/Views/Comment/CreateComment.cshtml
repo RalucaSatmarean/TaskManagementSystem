@@ -19,7 +19,7 @@
                 <span asp-validation-for="CommentId" class="text-danger"></span>
             </div>*@
             <div class="form-group">
-                <label asp-for="Comments" class="control-label">"Comment"</label>
+                <label asp-for="Comments" class="control-label">Comment</label>
                 <input asp-for="Comments" class="form-control" />
                 <span asp-validation-for="Comments" class="text-danger"></span>
             </div>
@@ -31,11 +31,11 @@
             <div class="form-group">
                 <label asp-for="TaskId" class="control-label">Task Name</label>
                 @Html.DropDownList("TaskId", new SelectList(ViewBag.TaskList, "Value", "Text"), "", new {@class= "form-control"})
-                <input asp-for="TaskId" class="form-control" />
+               @* <input asp-for="TaskId" class="form-control" />*@
                 <span asp-validation-for="TaskId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EmployeeId" class="control-label">"User Name"</label>
+                <label asp-for="EmployeeId" class="control-label">User Name</label>
                 @Html.DropDownList("EmployeeId", new SelectList(ViewBag.EmployeeList, "Value", "Text"), "", new {@class= "form-control"})
                 <input asp-for="EmployeeId" class="form-control" />
                 <span asp-validation-for="EmployeeId" class="text-danger"></span>

@@ -33,6 +33,7 @@ namespace TaskManagementSystem.Controllers
         // GET: CommentController/Details/5
         public ActionResult Details(Guid id)
         {
+            
             var model = _repository.GetCommentById(id);
             return View("CommentDetails", model);
 
@@ -79,6 +80,11 @@ namespace TaskManagementSystem.Controllers
         // GET: CommentController/Edit/5
         public ActionResult Edit(Guid id)
         {
+
+            var tasks = _taskRepository.GetAllTasks();
+            var taskList = tasks.Select(x => new SelectListItem(x.Name, x.TaskId.ToString()));
+            ViewBag.TaskList = taskList;
+
             var model = _repository.GetCommentById(id);
             return View("EditComment", model);
         }

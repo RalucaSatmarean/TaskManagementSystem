@@ -103,6 +103,8 @@ namespace TaskManagementSystem.Controllers
                 if (task.Result)
                 {
                     _repository.UpdateTask(model);
+                    Guid assigneeId = Guid.Parse(collection["Assignee"]);
+                    AddNewComment(collection["NewComment"], assigneeId, id);
                     return RedirectToAction("Index");
                 }
                 else
@@ -175,7 +177,7 @@ namespace TaskManagementSystem.Controllers
         private string PopulateComments(List<CommentModel> commentList)
         {
             string result = string.Empty;
-            if (commentList.Count >0)
+            if (commentList.Any())
             {
                 foreach (var comment in commentList)
                 {
@@ -188,6 +190,21 @@ namespace TaskManagementSystem.Controllers
             return "no comments added to this task";
         }
 
+        private void AddNewComment(string comment, Guid assigneeId, Guid taskId)
+        {
+            if(assigneeId.Equals(Guid.Empty)|| string.IsNullOrEmpty(comment))
+            {
+                return;
+            }
+            var commentModel = new CommentModel
+            {
+                Comments = comment,
+                EmployeeId = assigneeId,
+                TaskId = taskId
+            };
+
+            _commentRepository.InsertComment(commentModel);
+        }
 
     }
 }

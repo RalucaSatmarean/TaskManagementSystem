@@ -15,6 +15,7 @@ namespace TaskManagementSystem.ViewModels
         };
       
         public string? SelectedTaskStatus { get; set; }
+        public string? NewComment { get; set; }
 
         public ProjectTaskEditableViewModel(ProjectTaskViewModel baseViewModel)
         {
@@ -33,6 +34,7 @@ namespace TaskManagementSystem.ViewModels
             this.EmployeeList = baseViewModel.EmployeeList;
             this.CommentList = baseViewModel.CommentList;
             this.Comments = baseViewModel.Comments;
+        
         }
     }
 }

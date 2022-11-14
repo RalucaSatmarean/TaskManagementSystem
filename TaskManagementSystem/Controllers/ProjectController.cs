@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using TaskManagementSystem.Data;
 using TaskManagementSystem.Models;
 
@@ -8,10 +9,12 @@ namespace TaskManagementSystem.Controllers
     public class ProjectController : Controller
     {
        private Repository.ProjectRepository _repository;
+       private Repository.ProjectTaskRepository _taskRepository;
 
         public ProjectController (ApplicationDbContext dbContext)
         {
             _repository = new Repository.ProjectRepository(dbContext);
+            _taskRepository = new Repository.ProjectTaskRepository(dbContext);
         }
 
 
@@ -25,6 +28,10 @@ namespace TaskManagementSystem.Controllers
         // GET: ProjectController/Details/5
         public ActionResult Details(Guid id)
         {
+            var tasks = _taskRepository.GetAllTasks();
+            var taskList = tasks.Select(x => new SelectListItem(x.Name, x.TaskId.ToString()));
+            ViewBag.TaskCount = taskList.Count();
+
             var model = _repository.GetProjectById(id);
             return View("ProjectDetails", model);
         }

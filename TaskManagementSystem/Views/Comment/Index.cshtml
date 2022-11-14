@@ -22,12 +22,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.Date)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.TaskId)
-            </th>
-            <th>
+            </th>*@
+           @* <th>
                 @Html.DisplayNameFor(model => model.EmployeeId)
-            </th>
+            </th>*@
             <th></th>
         </tr>
     </thead>
@@ -43,12 +43,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.TaskId)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.EmployeeId)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.CommentId }) |
                     @Html.ActionLink("Details", "Details", new { id=item.CommentId}) |

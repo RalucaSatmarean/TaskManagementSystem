@@ -66,10 +66,9 @@
                 <label asp-for="ReporterName" class="control-label">Reporter</label>
                 <input asp-for="ReporterName" class="form-control" readonly="readonly"/>
             </div>
-               div class="form-group">
+               <div class="form-group">
                 <label asp-for="Assignee" class="control-label">Assignee</label>
                 <select asp-for="Assignee" class="form-select" />
-                <option>-Select Assignee-</option>
                 @foreach (var obj in Model.EmployeeList)
                 {
                       <option value="@obj.EmployeeId">@obj.Name</option>
@@ -86,7 +85,14 @@
                 <label asp-for="Comments" class="control-label">Comments (View only)</label>
                 @Html.TextAreaFor(model => model.Comments, new { Class="commentTextArea", @readonly= true })
              </div>
+             <div class="form-group">
+                <label asp-for="NewComment" class="control-label">Add New Comment</label>
+                <input asp-for="NewComment" class="form-control" />
+                <span asp-validation-for="NewComment" class="text-danger"></span>
+            </div>
            </dl>
+                       <div></div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
