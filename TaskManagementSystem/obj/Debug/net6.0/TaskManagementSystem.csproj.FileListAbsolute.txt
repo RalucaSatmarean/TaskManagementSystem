@@ -270,3 +270,4 @@ C:\Users\User\Desktop\.Net\ProiectFinal\TaskManagementSystem\TaskManagementSyste
 C:\Users\User\Desktop\.Net\ProiectFinal\TaskManagementSystem\TaskManagementSystem\obj\Debug\net6.0\TaskManagementSystem.pdb
 C:\Users\User\Desktop\.Net\ProiectFinal\TaskManagementSystem\TaskManagementSystem\obj\Debug\net6.0\TaskManagementSystem.genruntimeconfig.cache
 C:\Users\User\Desktop\.Net\ProiectFinal\TaskManagementSystem\TaskManagementSystem\obj\Debug\net6.0\ref\TaskManagementSystem.dll
+C:\Users\User\Desktop\.Net\ProiectFinal\TaskManagementSystem\TaskManagementSystem\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll

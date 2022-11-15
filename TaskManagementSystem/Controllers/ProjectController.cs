@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using TaskManagementSystem.Data;
 using TaskManagementSystem.Models;
 
 namespace TaskManagementSystem.Controllers
 {
+    [Authorize(Roles = "User,Admin")]
     public class ProjectController : Controller
     {
        private Repository.ProjectRepository _repository;
@@ -25,6 +28,7 @@ namespace TaskManagementSystem.Controllers
             return View("Index", projects);
         }
 
+        
         // GET: ProjectController/Details/5
         public ActionResult Details(Guid id)
         {
@@ -37,6 +41,7 @@ namespace TaskManagementSystem.Controllers
         }
 
         // GET: ProjectController/Create
+        [Authorize(Roles = "User,Admin")]
         public ActionResult Create()
         {
             return View("CreateProject");
@@ -45,6 +50,7 @@ namespace TaskManagementSystem.Controllers
         // POST: ProjectController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User,Admin")]
         public ActionResult Create(IFormCollection collection)
         {
             try
@@ -101,6 +107,7 @@ namespace TaskManagementSystem.Controllers
         }
 
         // GET: ProjectController/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id)
         {
             var model = _repository.GetProjectById(id);
@@ -110,6 +117,7 @@ namespace TaskManagementSystem.Controllers
         // POST: ProjectController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
