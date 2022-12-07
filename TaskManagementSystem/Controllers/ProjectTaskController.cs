@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Data;
 using System.Threading.Tasks;
 using TaskManagementSystem.Data;
 using TaskManagementSystem.Models;
@@ -48,6 +50,7 @@ namespace TaskManagementSystem.Controllers
         }
 
         // GET: ProjectTaskController/Create
+        [Authorize(Roles = "User,Admin")]
         public ActionResult Create()
         {
             var task = new ProjectTaskModel();
@@ -59,6 +62,7 @@ namespace TaskManagementSystem.Controllers
         // POST: ProjectTaskController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User,Admin")]
         public ActionResult Create(IFormCollection collection)
         {
             try
@@ -80,6 +84,7 @@ namespace TaskManagementSystem.Controllers
         }
 
         // GET: ProjectTaskController/Edit/5
+        [Authorize(Roles = "User,Admin")]
         public ActionResult Edit(Guid id)
         {
             var task = _repository.GetTaskById(id);
@@ -91,6 +96,7 @@ namespace TaskManagementSystem.Controllers
         // POST: ProjectTaskController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "User,Admin")]
         public ActionResult Edit(Guid id, IFormCollection collection)
         {
             try
@@ -120,6 +126,7 @@ namespace TaskManagementSystem.Controllers
 
 
         // GET: ProjectTaskController/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id)
         {
             var model = _repository.GetTaskById(id);
@@ -129,6 +136,7 @@ namespace TaskManagementSystem.Controllers
         // POST: ProjectTaskController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try

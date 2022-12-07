@@ -33,7 +33,7 @@ namespace TaskManagementSystem.Controllers
         public ActionResult Details(Guid id)
         {
             var tasks = _taskRepository.GetAllTasks();
-            var taskList = tasks.Select(x => new SelectListItem(x.Name, x.TaskId.ToString()));
+            var taskList = tasks.Where(x => x.ProjectId == id).ToList();
             ViewBag.TaskCount = taskList.Count();
 
             var model = _repository.GetProjectById(id);
@@ -41,7 +41,7 @@ namespace TaskManagementSystem.Controllers
         }
 
         // GET: ProjectController/Create
-        [Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View("CreateProject");
@@ -50,7 +50,7 @@ namespace TaskManagementSystem.Controllers
         // POST: ProjectController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "User,Admin")]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(IFormCollection collection)
         {
             try

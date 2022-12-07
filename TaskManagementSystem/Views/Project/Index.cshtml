@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Projects List</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class = "btn-sm btn-primary" asp-action="Create">Create New Project</a>
 </p>
 <table class="table">
     <thead>
@@ -50,14 +50,18 @@
                 @Html.DisplayFor(modelItem => item.StartDate)
             </td>
             <td>
-                    @Html.ActionLink("Details", "Details", new { id=item.ProjectId })
-                    @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                    @Html.ActionLink("Details", "Details", new { id=item.ProjectId }, new{@class="btn-sm btn-primary"})
+                   @* @if (User.IsInRole("User") || User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId});
-                    }
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId}, new{@class="btn-sm btn-info"})
+                        ;
+                    }*@
                     @if (User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })
+
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId}, new{@class="btn-sm btn-info"})
+                        ;
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId }, new{@class="btn-sm btn-danger"})
                     }
                <td>
         </tr>
